@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>WebSocket Chat Application</title>
+    <link rel="stylesheet" href="/css/main.css"/>
+</head>
+<body>
+
+<noscript>
+    <h2>Sorry! Your browser doesn't support Javascript</h2>
+</noscript>
+
+<!-- USERNAME PAGE -->
+<div id="username-page">
+    <div class="username-page-container">
+        <h1 class="title">Enter Username</h1>
+        <form id="usernameForm">
+            <input type="text" id="name" placeholder="Username" class="form-control"/>
+            <button type="submit" class="btn">Start Chatting</button>
+        </form>
+    </div>
+</div>
+
+<!-- CHAT PAGE -->
+<div id="chat-page" class="hidden">
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Spring Boot WebSocket Chat</h2>
+        </div>
+
+        <div class="connecting">Connecting...</div>
+
+        <ul id="messageArea"></ul>
+
+        <form id="messageForm">
+            <div class="input-group">
+                <input type="text" id="message" placeholder="Type a message..." class="form-control"/>
+                <button type="submit" class="btn primary">Send</button>
+                <!-- Leave button -->
+                <button type="button" id="leaveBtn" class="btn danger">Leave</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="/js/main.js"></script>
+
+</body>
+</html>
