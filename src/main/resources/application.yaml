@@ -2,15 +2,15 @@ spring:
   application:
     name: simple-messenger
 
-  jpa:
-    database: POSTGRESQL
-    hibernate.ddl-auto: none
-    show-sql: true
-
-  datasource:
-    platform: postgres
-    driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://pg-2216b695-test22-6955.g.aivencloud.com:21941/defaultdb?ssl=require
-    username: ${DB_USER}
-    password: ${DB_PASS}
+#  jpa:
+#    database: POSTGRESQL
+#    hibernate.ddl-auto: none
+#    show-sql: true
+#
+#  datasource:
+#    platform: postgres
+#    driverClassName: org.postgresql.Driver
+#    url: jdbc:postgresql://pg-2216b695-test22-6955.g.aivencloud.com:21941/defaultdb?ssl=require
+#    username: ${DB_USER}
+#    password: ${DB_PASS}
 
