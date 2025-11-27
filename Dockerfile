@@ -1,18 +1,13 @@
-# ---- Stage 1: Build ----
-FROM maven:3.9.6-eclipse-temurin-25 AS build
+FROM eclipse-temurin:25-jdk AS build
 WORKDIR /app
 
-COPY pom.xml .
-RUN mvn -q -e -DskipTests dependency:go-offline
+COPY . .
+RUN ./mvnw -q -DskipTests package
 
-COPY src ./src
-RUN mvn -q -DskipTests package
-
-# ---- Stage 2: Run ----
 FROM eclipse-temurin:25-jdk
 WORKDIR /app
 
 COPY --from=build /app/target/*.jar app.jar
-
 EXPOSE 8080
+
 ENTRYPOINT ["java", "-jar", "app.jar"]
