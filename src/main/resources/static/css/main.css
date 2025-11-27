@@ -144,3 +144,11 @@ body {
     white-space: nowrap;
     padding: 10px 18px;
 }
+
+#messageArea li.time-message {
+    text-align: center;
+    background: #f0f0f0;
+    color: #555;
+    font-style: italic;
+    border-left: 4px solid #888;
+}

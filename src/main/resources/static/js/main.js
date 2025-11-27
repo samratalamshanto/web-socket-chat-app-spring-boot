@@ -70,24 +70,37 @@ function sendMessage(event) {
 
 /* ---------------- RECEIVE MESSAGE ---------------- */
 function onMessageReceived(payload) {
-    var msg = JSON.parse(payload.body);
+    try {
+        var msg = JSON.parse(payload.body);
+        var li = document.createElement('li');
 
-    var li = document.createElement('li');
+        switch (msg.type) {
+            case 'JOIN':
+                li.classList.add('event-message');
+                li.textContent = `${msg.sender} joined!`;
+                break;
+            case 'CHAT':
+                li.classList.add(msg.sender === username ? 'self' : 'other');
+                li.textContent = `${msg.sender}: ${msg.content}`;
+                break;
+            case 'LEAVE':
+                li.classList.add('leave-message');
+                li.textContent = `${msg.sender} left!`;
+                break;
+            case 'TIME':
+                li.classList.add('time-message'); // dedicated class for scheduler time
+                li.textContent = msg.content;
+                console.log(msg.content);
+                break;
+        }
 
-    if (msg.type === "JOIN") {
-        li.classList.add("event-message");
-        li.textContent = msg.sender + " joined!";
-    } else if (msg.type === "CHAT") {
-        li.classList.add(msg.sender === username ? "self" : "other");
-        li.textContent = msg.sender + ": " + msg.content;
-    }else if (msg.type === 'LEAVE') {
-         li.classList.add('leave-message');
-         li.textContent = msg.sender + " left!";
-     }
-
-    messageArea.appendChild(li);
-    messageArea.scrollTop = messageArea.scrollHeight;
+        messageArea.appendChild(li);
+        messageArea.scrollTop = messageArea.scrollHeight;
+    } catch (e) {
+        console.error('Error parsing message:', e);
+    }
 }
+
 
 
 function leaveChat() {
